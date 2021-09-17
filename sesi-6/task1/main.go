@@ -48,6 +48,7 @@ func main() {
 }
 
 func langHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	var response ResponseLang
 	var request structLang
 	defer r.Body.Close()
@@ -55,6 +56,7 @@ func langHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		panic(err)
+		fmt.Fprintf(w, "Error sintak")
 	}
 
 	err = json.Unmarshal(c, &request)
